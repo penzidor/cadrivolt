@@ -1,0 +1,3 @@
+[functions.cadrivolt-push]
+# Auth is enforced in the function: signed user JWT or private dispatch token.
+verify_jwt = false

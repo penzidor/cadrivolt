@@ -2,6 +2,16 @@
 
 Application web avec authentification Supabase, annonces, photos, favoris, demandes, messagerie et administration. Ce paquet remplace la présentation HTML précédente. Aucun compte fictif n’est utilisé par défaut.
 
+Site publié : https://penzidor.github.io/cadrivolt/ — administration : https://penzidor.github.io/cadrivolt/admin/
+
+## Notifications
+
+Les migrations `004_notifications.sql` puis `005_web_push.sql` ajoutent une boîte privée persistante et les abonnements par appareil. Déployer `supabase/functions/cadrivolt-push/index.ts` comme Edge Function `cadrivolt-push`, avec la configuration `supabase/config.toml`, puis exécuter `006_push_schedule.sql` sur Supabase. La fonction vérifie elle-même le JWT du membre ou le jeton privé du planificateur. Les clés Web Push sont générées côté serveur au premier abonnement et restent dans la base privée. Ne jamais les copier dans `config.js`.
+
+La cloche permet de consulter les 50 dernières notifications, de remonter l’historique, de marquer comme lu et d’activer ou désactiver les alertes sur l’appareil courant. Les alertes concernent les nouvelles demandes, les réponses, les messages et les changements de lieu, date, heure, prix ou statut d’une session. Les activités antérieures à l’installation ne génèrent pas rétroactivement d’alertes. La liste se rafraîchit à son ouverture et périodiquement lorsque le site est visible.
+
+Le planificateur traite les alertes mobiles chaque minute, avec cinq tentatives au maximum et retrait des appareils expirés. Le contenu des messages privés n’apparaît pas sur l’écran verrouillé. L’utilisateur doit autoriser les notifications sur chaque appareil. Sur iPhone/iPad (iOS 16.4+), ajouter l’app à l’écran d’accueil puis l’ouvrir depuis cette icône. Les notifications push sont indépendantes du fournisseur SMTP ; les e-mails d’inscription nécessitent toujours SMTP.
+
 **Démarrer : ouvrir INSTALLATION.html.** Il faut créer le projet Supabase, exécuter `supabase/001_cadrivolt.sql`, renseigner les deux valeurs publiques de `config.js`, puis déposer le contenu de ce dossier sur GitHub Pages. Les dossiers `admin/` et `reset/` sont de vraies pages statiques. Utiliser HTTPS après publication.
 
 La connexion administrateur utilise votre adresse e-mail Supabase et votre mot de passe. Le rôle administrateur est accordé explicitement avec `supabase/002_admin.sql` après création et confirmation du compte. Le mot de passe de la précédente version locale n’est pas transféré automatiquement dans Supabase.
