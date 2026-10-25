@@ -34,3 +34,6 @@ node scripts/export-supabase.mjs
 ```
 
 L’export préserve un `config.js` déjà renseigné dans le dossier de publication. Les données partagées sont dans Supabase ; aucune base n’est incluse dans le ZIP.
+
+## Photos de profil
+Exécuter `supabase/007_profile_photos.sql` après la migration 001. Dans Mon profil, importer ou retirer une photo puis enregistrer. JPG, PNG ou WebP, 8 Mo maximum. Les anciennes images restent dans Storage après retrait ; le profil revient aux initiales.
