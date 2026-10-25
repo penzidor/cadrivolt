@@ -37,3 +37,6 @@ L’export préserve un `config.js` déjà renseigné dans le dossier de publica
 
 ## Photos de profil
 Exécuter `supabase/007_profile_photos.sql` après la migration 001. Dans Mon profil, importer ou retirer une photo puis enregistrer. JPG, PNG ou WebP, 8 Mo maximum. Les anciennes images restent dans Storage après retrait ; le profil revient aux initiales.
+
+## Bannières et recherche
+Exécuter `supabase/008_profile_banners.sql` après 007. Mon profil permet d’importer une bannière, la déplacer, zoomer de 100 à 300 %, la recentrer ou la retirer, puis enregistrer. Le cadrage est partagé entre la carte et le profil. Explorer accepte une ville ou un code postal en saisie libre (recherche dans le lieu indiqué sur les annonces, sans rayon géographique). Filtres combinables : catégorie, dates, gratuité, budget, voiture, organisateur, moment de la journée et places proposées.
