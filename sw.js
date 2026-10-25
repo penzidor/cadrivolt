@@ -6,7 +6,7 @@ self.addEventListener('push',event=>{
  const base=new URL(self.registration.scope);let target=new URL(base);
  try{const candidate=new URL(data.url,base);if(candidate.origin===base.origin&&candidate.pathname.startsWith(base.pathname))target=candidate;}catch{}
  event.waitUntil(self.registration.showNotification(data.title||'Du nouveau sur Cadrivolt',{
-  body:data.body||'Ouvre Cadrivolt pour consulter tes notifications.',icon:new URL('icons/icon-192.png',base).href,
+  body:data.body||'Ouvre Cadrivolt pour consulter tes notifications.',icon:new URL('images/cadrivolt-logo.png',base).href,
   tag:data.tag||'cadrivolt',data:{url:target.href}
  }));
 });
